@@ -1,0 +1,94 @@
+#1 Move file from one folder to respective folder
+#! /bin/bash
+
+for file in `ls *.txt`
+do
+	BaseName=$(echo $file | awk -F. '{ print $1 }')
+	echo file:$file
+	echo Basename=$BaseName
+
+	mkdir $BaseName
+	echo "created folder $BaseName"
+
+	mv $file$folder
+	echo "copying file $file to folder $folder"
+done
+
+2. Find the difference between original file and the updated file.
+
+mkdir original/updated
+cp original-file.sh original
+cp upadated-file.sh updated
+diff origins updated
+
+3.execute command "hello" and "ls".
+
+nano hello.sh
+echo "hello"
+bash hello.sh
+
+nano ls.sh
+echo "ls"
+bash ls.sh
+
+4.Archive the file from /var /log folder which have modified 7 days ago and move it to
+your backup folder.
+
+nano backupFiles.sh
+#! /bin/bash
+
+set -x
+
+files=$(find -mtime +7)
+
+for files in $file
+do
+	echo $file
+	mkdir backup
+	mv $file backup
+done
+
+5.create a process list table
+ps -elf
+
+6.Check if a folder exixts or not. if it is not present create it.
+nano fileExists.sh
+
+#! /bin/bash
+set -x
+
+echo 'Please enter folder'
+	read folder
+if [ -d $folder ]
+then
+	echo "folder exist"
+else
+	mkdir $folder
+fi
+
+7.Print list of last 4 frequently access uniq url and count it.
+cat access.log | awk '{ print $7 }' | sort | uniq -c | sort -nr | head -
+
+8.Print list of 4 uniq client ip and count it.
+cat access.log | awk '{ print $1 }' | sort | uniq -c | sort -rn | tail -4
+
+9.Print list of web response code count in the unique sorted order at specific hour.
+cat access.log | awk '{ print $9 }' | sort | uniq -c | sort -nr | head -4
+
+10.. Data Analysis questionPrint emp name and total pay who base pay greater than 10000 ?
+	cat data.csv | awk ' $4 > 10000{ print $7 }'
+
+What is the aggregate Total pay of employee whose job title is ‘Captain’ ?
+	cat data.csv | grep -i captain | awk '{sum+=$7 } END { print sum }'
+
+Print job Title and Over timepay is between 7000 and 10000 ?
+	cat data.csv | awk ' 7000 < $5 && $5 <10000 { print $3,$5 }'
+
+Print avg BasePay ?
+	cat data.csv | awk '{sum+=$4 } END { print sum/NR }
+
+11. append current date to all log files name which has extension .log.1 from a folder.
+touch abc.log.1 def.log.1 ghi.log.1 jkl.log.1 mno.log.1
+ps -l
+echo def.log.1 | awk -F. '{ print $2 .$3}'
+date +%d%m%y

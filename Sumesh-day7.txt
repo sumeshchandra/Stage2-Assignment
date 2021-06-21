@@ -1,0 +1,157 @@
+############################## Array Pratice Problem ##############
+
+5. range 0-100 find digits that repeats 33 66 and store them array. 
+
+ 1 #!/bin/bash -x
+ 2
+ 3 declare -a repeatedNumberArray
+ 4 countArray=0
+ 5 for ((count=1 ; count < 100 ; count++ ))
+ 6  do
+ 7 if [ $((count%10)) -eq $(((count/10)%10)) ]
+ 8 then
+ 9 repeatedNumberArray[((countArray++))]=$count
+10 fi
+11 done
+12 echo "Repeated number is ${repeatedNumberArray[@]} "
+13
+
+1. generate 10 random 3 digit steps, store in array and find 2nd largest 
+and 2nd smallest.
+
+#!/bin/bash -x
+
+function generateRandomNumber() {
+randomNumber=$((RANDOM%899+100))
+echo $randomNumber
+}
+function secondLargest() {
+randomNumbers=("@")
+
+largestNumber=${randomNumbers[0]}
+secondLargestNumber=${randomNumbers}
+smallestNumber=${randomNumbers[0]}
+secondSmallestNumber=${randomNumbers[0]}
+
+for ((counter=1; counter < ${#randomnumbers[@]}; count++))
+do
+        if [ $largestNumber -lt ${randomNumbers[$counter]} ]
+        then
+         secondLargestNumber=$largestNumber
+         largestNumber=${randomNumbers[$cont]}
+        elif [ $secondLargestNumber -lt ${randomNumbers[$counter]} ]
+        then
+         secondLargestNumber=${randomNumbers[$counter]}
+fi
+        if [ $smallestNumber -gt ${randomNumbers[$counter]} ]
+        then
+         secondSmallestNumber=$smallestNumber
+         smallestNumber=${randomNumbers[$counter]}
+        elif [ $secondSmallestNumber -gt ${randomNumbers[$counter]} ]
+        then
+         secondSmallestNumber=${randomNumbers[$counter]}
+fi
+done
+echo "Second Largest number is $secondLargestNumber"
+echo "Second Smallest number is $secondSmallestNumber"
+}
+function storeRandomNumber() {
+counter=0
+while [ $counter -lt 10 ]
+do
+randomNumberArray[((counter++))]=$(generateRandomNumber)
+done
+echo ${randomNumberArray[@]}
+SecondLargest=${randomNumberArray[@]}
+}
+storeRandomNumber
+
+2. find sorted array and find 2nd largest and 2nd smallest element.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 function generateRandomNumber() {
+ 4 randomNumbers=$((RANDOM%899+100))
+ 5         echo $randomNumber
+ 6 }
+ 7 function sortTheArray() {
+ 8 randomNumbers=("$@")
+ 9
+10 for ((counterOne =0; counterOne < ${#randomNumbers[@]}; counterOne++ ))
+11 do
+12         for((counterTwo = $counterOne; counterTwo < ${#randomNumbers[@]};
+13 counterTwo++ ))
+14         do
+15                 if  [ ${randomNumbers[$counterOne]} -gt ${randomNumbers[$counterTwo]} ]; then
+16                 temp=${randomNumbers[$counterOne]}
+17                 randomNumbers[$counterOne]=${randomNumbers[$counterTwo]}
+18                 randomNumbers[$counterTwo]=$temp
+19                 fi
+20         done
+21 done
+22
+23 echo "Sorted array is " ${randomNumbers[@]}
+24 echo "Second Largest number is ${randomNumbers[ $(( ${#randomNumbers[@]} - 2 )) ]}"
+25 echo "Second Smallest number is ${randomNumbers[1]}"
+26 }
+27
+28 function storeRandomNumber() {
+29 counter=0
+30 while [ $counter -lt 10 ]
+31 do
+32 randomNumberArray[((counter++))]=$(generateRandomNumber)
+33 done
+34 echo ${randomNumberArray[@]}
+35 sortTheArray ${randomNumberArray[@]}
+36 }
+37 storeRandomNumber
+38
+
+
+3. prime factorization.
+
+ 1 #! /bin/bash -x
+ 2
+ 3         echo "Enter the number to find factors:"
+ 4 read num
+ 5
+ 6 declare a primeFactors
+ 7 counter=0
+ 8 primeFactorsOf=$num
+ 9         for ((count=2 ; count<= $num ; count++ ))
+10   do
+11         while (($num%$count == 0 ))
+12   do
+13 primeFactors[((counter++))]=$count
+14 num=$((num/count))
+15   done
+16   done
+17 echo "Prime factors of $primeFactorsOf is ${primeFactors[@]}"
+18
+
+
+4. show sum pf three integer adds to zero.
+
+#!/bin/bash -x
+
+arr=( 0 -1 2 3 -3 1 )
+echo "the element are: "${ar[0]}
+len=${#arr[@]}
+for ((i=0; i<$len-2; i++))
+do
+        for ((j=i+1; j<$len-1; j++))
+        do
+                for ((k=j+1; k<$len; k++))
+                do
+                        if [ $(( arr[$i]+arr[$j]+arr[$k] )) == 0 ]
+
+                        then
+                                        echo -e "${arr[i]} \c"
+                                        echo -e "${arr[j]} \c"
+                                        echo -e "${arr[k]} \n"
+                        fi
+                done
+        done
+done
+
+

@@ -1,0 +1,103 @@
+1. Roll a die
+
+ #!/bin/bash -x
+
+diceResult=( 0 0 0 0 0 0 )
+function rollDice() {
+        echo $((RANDOM%6+1))
+}
+
+function findMinMaxDice() {
+resultDice=("$@")
+max=${resultDice[1]}
+maxDice=1
+min=${resultDice[1]}
+mixDice=1
+for ((counter=2; counter <${#resultDice[@]}; counter++))
+do
+        if [$max -lt ${resultDice[$counter]} ]
+        then
+         min=${resultDice[$counter]}
+         minDice=$counter
+        fi
+done
+echo "Dice with max times $maxDice and min times $minDice"
+}
+
+function checkMaxDiceTimes() {
+        preResult=$1
+if [ $preResult -eq 10 ]
+then
+        isPresentMax=1
+else
+        isPresentMax=0
+fi
+
+echo $isPresentMax
+}
+
+while
+do
+        dice=$(rollDice)
+        if[[ $( checkMaxDiceTimes ${diceResult[$dice]} -eq 1 )
+then
+        break
+else
+        diceResult[((dice))]=$((diceResult((dice))] +1))
+        if[[ $(checkMaxDiceTimes ${diceResult[$dice]} ) -eq 1 ]]
+then
+        break
+        fi
+fi
+done
+
+echo "Dice Roll Times \n"
+for i in "${!diceResult[@]}"
+do
+        echo "$i:${diceResult[@$i]}"
+done
+findMaxMinDice ${diceResult[@]}
+
+
+
+
+2. gemerate 50 individual between year 92 & 93.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 declare -A same_month
+ 4
+ 5 select_month=$(( 1+($RANDOM%11+1) ))
+ 6
+ 7  month[1]="jan"
+ 8  month[2]="feb"
+ 9  month[3]="mar"
+10  month[4]="apr"
+11  month[5]="may"
+12  month[6]="june"
+13  month[7]="july"
+14  month[8]="August"
+15  month[9]="September"
+16  month[10]="October"
+17  month[11]="November"
+18  month[12]="December"
+19
+20
+21 echo "Individuals having birthdays on $month are: "
+22 j=0
+23 for (( i=1;i<=50;i++ ))
+24 do
+25 birth_month=$(( 1+($RANDOM%11+1) ))
+26 if (( $birth_month==$select_month ))
+27 then
+28 count=1
+29 while (( $count!=0 ))
+30 do
+31 same_month[$j]="Individual $i "
+32 j=$(( $j+1 ))
+33 count=0
+34 done
+35 fi
+36 done
+37 echo ${same_month[@]}
+

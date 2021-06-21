@@ -1,0 +1,339 @@
+################### problems with for loops ###########################
+
+1.No is prime or not.
+
+ 1 #! /bin/bash
+ 2 echo "Please enter a number"
+ 3 read num
+ 4 ret=$(factor $num | grep $num | cut -d ":" -f 2 | cut -d " " -f 2)
+ 5 if [ "$ret" -eq "$num" ]
+ 6 then
+ 7 echo "$num is a prime number"
+ 8 else
+ 9 echo "$num is not a prime number"
+10 fi
+11
+
+2. factorial of no.
+#!/bin/bash
+
+echo "Enter a number"
+read num
+
+fact=1
+
+for((i=2;i<=num;i++))
+{
+  fact=$((fact * i))  #fact = fact * i
+}
+
+echo $fact is the factorial
+
+3. Harmonic no.
+ 1 #! /bin/bash
+ 2 echo "please enter the num"
+ 3 read n
+ 4 sum=0
+ 5 for((i=1;i<=$n;i++))
+ 6 do
+ 7 div=`echo 1.0 $i | awk '{print $1/$2}'`
+ 8 sum=`echo $sum $div | awk '{print $1+$2}'`
+ 9 done
+10 echo "harmonic $sum"
+11
+
+4. Prime Factor
+
+ #! /bin/bash
+echo "enter an integer:"
+read input
+if [ $input -lt 1 ];
+then
+echo "not allowed"
+exit 1
+fi
+i=2
+count=0
+flag=0
+for ((i;i<$input;i++));
+do
+if [ `expr $input % $i` -eq 0 ];then
+factor=$i
+for ((j=2;j<=`expr $factor / 2`;j++));do
+flag=0
+if [ `expr $factor % $j` -eq 0 ];then
+flag=1
+break
+fi
+done
+if [ $flag -eq 0 ];then
+echo " $factor "
+count=1
+fi
+fi
+done
+if [ $count -eq 0 ];then
+echo "no prime factors found except 1 and $input"
+fi
+
+5. Print table power of 2.
+
+#! /bin/bash -x
+echo "please enter n"
+read n
+for((i=1;i<=10;i++))
+do
+power=$((2**$i))
+echo "$power"
+done
+
+6. prime range..
+
+ 1 #! /bin/bash
+ 2 echo "please give the range :"
+ 3 read r
+ 4 n=2
+ 5 while [ $n -le $r ]
+ 6 do
+ 7 i=2
+ 8 count=1
+ 9 while [ $i -lt $n ]
+10 do
+11 if [ `expr $n % $i` -eq 0 ]
+12 then
+13 count=0
+14 break
+15 fi
+16 i=`expr $i + 1`
+17 done
+18 if [ $count -eq 1 ]
+19 then
+20 echo "$n"
+21 fi
+22 n=`expr $n + 1`
+23 done
+ 
+########################## problem with while loop ##############
+
+1. Print table power of 2 till it reaches 256.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 echo "Enter No" n
+ 4 read n
+ 5 i=1
+ 6 while [ $i -le $n ]
+ 7 do
+ 8 power=$((2**$i))
+ 9 if [ $power -le 256 ];
+10 then
+11         echo $power
+12 fi
+13         ((i++))
+14 done
+
+2. magic No problem guess 1 to 100.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 echo "Guess No between 1 to 100"
+ 4 low=1
+ 5 high=100
+ 6 mid=0
+ 7 wrongGuessNo=1
+ 8
+ 9 mid=$((( low + high )/2))
+10
+11 while [ $wrongGuessNo -eq 1 ]
+12 do
+13         if [ $low -eq $mid ]
+14         then
+15                 wrongGuessNo=0
+16                 echo "The magic no is $low"
+17         else
+18                 read -p "No is less than $mid yes/no : " choice
+19         fi
+20
+21         if [ $choice == yes ] || [ $choice == y ]
+22         then
+23                 high=$mid
+24         else
+25                 low=$mid
+26         fi
+27                 mid=$((( low + high )/2))
+28 done
+29
+
+3. Flip a coin.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 heads_count=0
+ 4 tails_count=0
+ 5 tails_count=0
+ 6 target_count=0
+ 7
+ 8 result=$((RANDOM%2))
+ 9 if [ $result -eq 1 ]; then
+10 echo HEADS
+11 ((heads_count++))
+12 else
+13 echo TAILS
+14 ((tails_count++))
+15 fi
+16
+17 if(($heads_count -ge $tails_count))
+18 echo Heads won
+19 else
+20 echo tails won
+21 fi
+22 done
+23 diff=$(( heads_count - tails_count ))
+24 if(( $heads_count == $target_count && $diff >= $minimum_difference ))
+25 then
+26 echo "Heads won by $diff"
+27 break
+28 elif(( $tails_count == $target_count && $diff >= $minimum_difference ))
+29 then
+30 echo "Tails won by ${diff} points"
+31 break
+32 fi
+33 done
+34 echo "The Heads count is $heads_count "
+35 echo " Tails Count is $tails_count"
+36
+
+4. Gambling..
+
+ 1 #!/bin/bash
+ 2 won=1
+ 3 noOfBets=0
+ 4 noOfWins=0
+ 5 noOfLosses=0
+ 6 moneyHave=100
+ 7 moneyshould_earn=200
+ 8 each_bets=20
+ 9 money_for_winner=20
+10
+11 while [[ $moneyHave -ge $Each_bets && $money_Have -lt $moneyshould_earn>
+12 do
+13   ((noOfBets++))
+14   result=$((RANDOM%2))
+15   if [ $result - eq $won ]
+16   then
+17         moneyHave=$(($moneyHave + $each_bets))
+18         ((noOfLooses--))
+19   fi
+20         if [ $moneyHave -eq 0 ]
+21         then
+22                 echo player lost
+23         else
+24                 echo player Won
+25   fi
+26 done
+27
+
+#####################Function Pratice Problem##########################
+
+1. check no is pl=alindrome or not.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 echo Enter Numbers :
+ 4 read num
+ 5 s=0
+ 6 rev=""
+ 7 temp=$num
+ 8 function_is_palindrome() {
+ 9 while [$num -gt 0]
+10 do
+11         s=$(($num%10))
+12         num=$(($num/10))
+13         rev=$( echo ${rev}${s} )
+14 done
+15 }
+16 is_palindrome() {
+17 if [ $temp -eq $rev ];
+18 then
+19         echo "Number is palindrome"
+20 else
+21         echo "Number is not palindrome"
+22 fi
+23 }
+
+2. Temp Conv.
+
+#! /bin/bash -x
+echo "please enter input "
+read input
+function conversion_temp(){
+        echo "please enter conversionUnits"
+        read conversion
+        case $conversion in
+        farenhite)
+        echo "$celcius_to_farenhite ";;
+        celcius)
+        echo "$farenhite_to_celcius ";;
+        * )
+        echo "name error";;
+        esac
+}
+
+if [ $input -le 100 ];then
+a=`echo $input 1.8 | awk '{print $1*$2}'`
+celcius_to_farenhite="`echo $a 32 | awk '{print $1+$2}'` degF"
+else
+celcius_to_farenhite="out of parameter"
+fi
+
+if [ $input -le 212 ] && [ $input -ge 32 ];then
+b=`echo $input 32 | awk '{print $1-$2}'`
+farenhite_to_celcius="`echo $b 0.56 | awk '{print $1*$2}'` degC"
+else
+farenhite_to_celcius="out of parameter"
+fi
+
+result="$( conversion_temp )"
+
+3.  Palindrome is also prime.
+
+ 1 #! /bin/bash -x
+ 2 echo “Enter numbers:”
+ 3 read num
+ 4 s=0
+ 5 rev=""
+ 6 temp=$num
+ 7 divisible=0
+ 8 function Is_Prime(){
+ 9 for(( i=2 ;i <= `expr $num / 2`;i++))
+10 do
+11 if [ `expr $num % $i` -eq 0 ]
+12 then
+13 divisible=1
+14 fi
+15 done
+16 }
+17 function Is_palindrom() {
+18 while [ $num -gt 0 ]
+19 do
+20 s=$(( $num % 10 ))
+21 num=$(( $num / 10 ))
+22 rev=$( echo ${rev}${s} )
+23 done
+24 }
+25 Is_Prime
+26 if [ $divisible -eq 0 ]
+27 then
+28 echo "prime no"
+29 Is_palindrom
+30 if [ $temp -eq $rev ];
+31 then
+32 echo "$temp Number is prime palindrome "
+33 else
+34 echo "$temp Number is prime NOT palindrome"
+35 fi
+36 else
+37 echo "$num is not prime no"
+38 fi
+39
+

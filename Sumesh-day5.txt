@@ -1,0 +1,381 @@
+#########################CASE STATEMENT#########################
+1Read a single digit no and write the number in word using case.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 echo "Enter single Digit "
+ 4 read n
+ 5 case $n in
+ 6  1)
+ 7  echo "One";;
+ 8  2)
+ 9  echo "Two";;
+10  3)
+11  echo "Three";;
+12  4)
+13  echo "Four";;
+14  5)
+15  echo "Five";;
+16  6)
+17 echo "SIx";;
+18  7)
+19  echo "Seven";;
+20  8)
+21 echo "Eight";;
+22  9)
+23  echo "Nine";;
+24  *)
+25  echo "Error, Enter only single Digit";;
+26 esac
+
+2. Read no and displa week days.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 echo "Enter week Day"
+ 4 read w
+ 5
+ 6 case $w in
+ 7  1)
+ 8  echo "Sunday";;
+ 9  2)
+10  echo "Monday";;
+11  3)
+12  echo "Tuesday";;
+13  4)
+14  echo "Wednesday";;
+15  5)
+16  echo "Thursday";;
+17  6)
+18  echo "Friday";;
+19  7)
+20  echo "Saturday";;
+21  *)
+22  echo "Go Study in nursery";;
+23 esac
+
+3. Read a no 1,10,100,1000 and display unit,ten,hundred,thousand.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 echo "Enter Digits"
+ 4 read d
+ 5 case $d in
+ 6 1)
+ 7 echo "Unit";;
+ 8 10)
+ 9 echo "Ten";;
+10 100)
+11 echo "Hundred";;
+12 1000)
+13 echo "Thousand";;
+14 *)
+15 echo "infinite";;
+16 esac
+
+4. WAP User inputs Unit Conversion.
+
+ 1 #!/bin/bash -x
+ 2
+ 3 echo "Enter digit"
+ 4 read input
+ 5
+ 6 feet_to_inch=`expr $input \* 12`
+ 7 inch_to_feet=`expr $input \* 12`
+ 8 feet_to_inch=`echo $input 3.28 | awk '{ print $1/$2 }'`
+ 9 meter_to_feet=`echo $input 3.28 | awk '{ print $1*$2}'`
+10
+11 echo "Please enter Unit Conversion"
+12 read conversion
+13 case $conversion in
+14         1)
+15         echo "$feet_to_inch inch";;
+16         2)
+17         echo "$inch_to_feet feet";;
+18         3)
+19         echo "$feet_to_inch inch";;
+20         4)
+21         echo "$meter_to_feet feet";;
+22 esac
+
+#########################If else Statement #######################
+1.leap year
+
+1 #!/bin/bash
+ 2
+ 3 read -p "Enter year : " leap
+ 4         echo taking year as $leap
+ 5 if [ `expr $leap % 400` -eq 0 ]
+ 6 then
+ 7         echo leap year
+ 8 elif [ `expr $leap % 100` -eq 0 ]
+ 9 then
+10         echo not a leap year
+11 elif [ `expr $leap % 4` -eq 0 ]
+12 then
+13         echo leap year
+14 else
+15         echo not a leap year
+16 fi
+
+2. flip a coin.
+#! /bin/bash
+
+echo -e "please choose \n1. Head \n2. Tail"
+read choice
+coinToss=$((RANDOM%2+1))
+
+if [$choice -eq $coinToss ]
+then
+	echo "win win"
+else
+	echo "Lost"
+fi
+
+3.5 random 3 digits values and then output min and max value.
+
+#! /bin/bash -x
+
+a=$(( RANDOM % 899 + 100 ));
+b=$(( RANDOM % 899 + 100 ));
+c=$(( RANDOM % 899 + 100 ));
+d=$(( RANDOM % 899 + 100 ));
+e=$(( RANDOM % 899 + 100 ));
+
+if [$a -gt $b] && [ $a -gt $c ] && [ $a -gt $d ] && [ $a -gt $e ];then
+	echo "$a is MAX value"
+elif [$b -gt $a] && [$b -gt $c] && [$b -gt $d] && [$b -gt $e];then
+	echo "$b is MAX value"
+elif [ $c -gt $a ] && [ $c -gt $b ] && [ $c -gt $d ] && [ $c -gt $e ] ;then
+	echo "$c is MAX value"
+elif [ $d -gt $a ] && [ $d -gt $b ] && [ $d -gt $c ] && [ $d -gt $e ] ;then
+	echo "$d is MAX value"
+else
+	echo "$e is MAX value"
+fi
+if [ $a -lt $b ] && [ $a -lt $c ] && [ $a -lt $d ] && [ $a -lt $e ] ;then
+	echo " $a is MIN value "
+elif [ $b -lt $a ] && [ $b -lt $c ] && [ $b -lt $d ] && [ $b -lt $e ] ;then
+	echo " $b is MIN value "
+elif [ $c -lt $a ] && [ $c -lt $b ] && [ $c -lt $d ] && [ $c -lt $e ] ;then
+	echo "$c is MIN value"
+elif [ $d -lt $a ] && [ $d -lt $b ] && [ $d -lt $c ] && [ $d -lt $e ] ;then
+	echo "$d is MIN value"
+else
+echo "$e is MIN value"
+fi
+
+4. Write a program that takes day and month from the command line and prints true if day of
+month is between March 20 and June 20, false otherwise.
+
+#! bin/bash -x
+
+read -p "Enter Date : " date
+read -p "Enter Month : " Month
+
+if [ $Month -gt 3]&&[Month -lt 6]&&[$date -lt 31]; then
+	echo "True";
+if [ $Month -eq 3]&&[$date -ge 20]&&[$date -lt 31]; then
+	echo "True";
+elif [ Month -eq 6 ]&&[$date -le 20]; then
+	echo "True"
+else
+	echo "False"
+fi
+
+############ if elif and else ####################
+
+1. read a single digit sum and write the num in word ?
+
+#! /bin/bash -x
+
+echo "Enter a Num : "
+read num
+
+if [ $num -eq 1 ];then
+	echo "One"
+elif [ $num -eq 2 ];then
+	echo "Two"
+elif [ $num -eq 3 ];then
+	echo "Three"
+elif [ $num -eq 4 ];then
+	echo "Four"
+elif [ $num -eq 5 ];then
+	echo "Five"
+elif [ $num -eq 6 ];then
+	echo "Six"
+elif [ $num -eq 7 ];then
+	echo "Seven"
+elif [ $num -eq 8 ];then
+	echo "Eight"
+elif [ $num -eq 9 ];then
+	echo "Nine"
+else
+	echo "Enter only single digit"
+fi
+
+2. Read a num 1,10,100,1000 and display unit in ten,hundred...
+
+#! bin/bash -x
+
+echo "Please enter a Number : "
+read num
+
+if [ $num -le 9 ];then
+	echo "Unit"
+elif [ "$num" -ge 10 ]&&[ $num -le 99];then
+	echo "Ten"
+elif [ $num -ge 100 ] && [ $num -le 999];then
+	echo "Hundred"
+elif [ $num -ge 1000 ] && [ $num -le 9999 ];then
+	echo "Thousand"
+else
+	echo "Out of Bound Index"
+fi
+ORRRRRRRR
+
+ 1 #!/bin/bash
+ 2
+ 3 echo "Enter digits : "
+ 4 read no
+ 5 if [ $no -eq  1 ];then
+ 6 echo "Unit"
+ 7 elif [ $no -eq 10 ]; then
+ 8 echo "Ten"
+ 9 elif [ $no -eq 100 ]
+10 then
+11 echo "Hundred"
+12 elif [ $no -eq 1000 ]
+13 then
+14 echo "Thousand"
+15 else
+16 echo "Invalid No"
+17 fi
+
+
+3. Read a no and display week days ?
+
+#! /bin/bash -x
+
+echo "Enter a No : "
+read num
+
+if [ $num -eq 1 ];then
+	echo "Sunday"
+elif [ $num -eq 2 ];then
+	echo "Monday"
+elif [ $num -eq 3 ];then
+	echo "Tuesday"
+elif [ $num -eq 4 ];then
+	echo "Wednesday"
+elif [ $num -eq 5 ];then
+	echo "Thursday"
+elif [ $num -eq 6 ];then
+	echo "Friday"
+elif [ $num -eq 7 ];then
+	echo "Saturday"
+else
+	echo "Invalid, Enter Valid one"
+fi
+
+4. Enter 3 no and do Arithmetic operation.
+
+ 1 #!/bin/bash
+ 2
+ 3 echo "Enter 3 no"
+ 4 read n1
+ 5 read n2
+ 6 read n3
+ 7
+ 8 a=$(( n1 + n2 * n3 ))
+ 9 echo "exp1 : $a"
+10 b=$(( n1 % n2 + n3 ))
+11 echo "exp2 : $b"
+12 c=$(( n1 + n2 / n3 ))
+13 echo "exp3 : $c"
+14 d=$(( n1 * n2 + n3 ))
+15 echo "exp4 : $d"
+16
+17 if [ $a -gt $b ] && [ $a -gt $c ] && [ $a -gt $d ]; then
+18         echo "$a is MAX Value"
+19 elif [$b -gt $a ] && [ $b -gt $c ] && [ $b -gt $d ]; then
+20         echo "$b is MAX value"
+21 elif [$c -gt $a ] && [ $c -gt $b ] && [ $c -gt $d ]; then
+22         echo "$c is MAX value"
+23 else
+24         echo "$d is MAX value"
+25 fi
+26
+27
+28 if [ $a -lt $b ] && [ $a -gt $c ] && [ $a -lt $d ]; then
+29         echo "$a is MIN value"
+30 elif [ $b -lt $a ] && [ $b -lt $c ] && [ $b -lt $d ]; then
+31         echo "$b is MIN value"
+32 elif [ $c -lt $a ] && [ $c -lt $b ] && [ $c -lt $d ]; then
+33         echo "$c is MIN value"
+34 else
+35         echo "$d is MIN value"
+36 fi
+
+
+######################Sequence Praticd Problem ###############
+
+1. use random function to get random digit ?
+echo $((RANDOM%10))
+
+2. use random to get dice no between 1 to 6 ??
+echo $((RANDOM%6 +1))
+
+3.add to dice no and print the result ?
+#! /bin/bash -x
+
+dice1=$((RANDOM%6+1))
+dice2=$((RANDOM%6+1))
+
+add=$(( $dice1 + $dice2 ))
+echo $add
+
+4. WAP to find 5 random 2 digit vaues and find their sum and avg ??
+#!/bin/bash -x
+
+a=$((RANDOM%89+10))
+b=$((RANDOM%89+10))
+c=$((RANDOM%89+10)) 
+d=$((RANDOM%89+10))
+e=$((RANDOM%89+10))
+
+sum=$(( $a + $b + $c + $d + $e ))
+echo "SUM : $sum"
+avg=`echo $sum 5 | awk '{ print $1/$2 }'`
+echo "AVG : $avg"
+
+5. unit conversion
+
+1. 42 inch in feet ?
+
+inch=42
+feet=`echo $inch 12 | awk '{ print $1/$2 }'
+echo "$inch inch is $feet feet"
+
+2.Rectangle plot of 60 feet X 40 feet in meter?
+
+#!/bin/bash -x
+
+width_feet=60
+length+feet=40
+
+width_meter=`echo $width_feet 3.28 | awk '{ print $1/$2 }'`
+length_meter=`echo $length_feet 3.28 | awk '{ print $1/$2 }'`
+
+echo "Rectangular plot of $width_meter meter X $length_meter meter"
+
+3.calculate the area of the plot 25 meter square in acer?
+
+#! /bin/bash -x
+
+area_in_SquareFeet=25
+area_in_acer=`echo $area_in_SquareFeet 43560 | awk '{print $1/$2}' `
+
+echo " $area_in_acer acer"
+
+
